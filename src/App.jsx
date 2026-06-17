@@ -20,6 +20,8 @@ from "./layouts/MainLayout";
 
 import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
+import MemberDashboard
+from "./pages/MemberDashboard";
 
 function App() {
 
@@ -72,6 +74,17 @@ function App() {
     <ProtectedRoute>
       <MainLayout>
         <ProjectDetails />
+      </MainLayout>
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/member-dashboard"
+  element={
+    <ProtectedRoute>
+      <MainLayout>
+        <MemberDashboard />
       </MainLayout>
     </ProtectedRoute>
   }

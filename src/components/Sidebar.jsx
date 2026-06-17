@@ -1,30 +1,33 @@
 import {
-  FaTasks,
   FaProjectDiagram,
   FaChartBar,
 } from "react-icons/fa";
+
 import {
   useAuth,
 } from "../context/AuthContext";
 
 import {
   useNavigate,
-} from "react-router-dom";
-import {
   Link,
 } from "react-router-dom";
 
 const Sidebar = () => {
-const { logout } = useAuth();
 
-const navigate =
-  useNavigate();
+  const {
+    user,
+    logout,
+  } = useAuth();
+
+  const navigate =
+    useNavigate();
 
   const logoutHandler = () => {
-  logout();
 
-  navigate("/login");
-};
+    logout();
+
+    navigate("/login");
+  };
 
   return (
     <div
@@ -37,7 +40,6 @@ const navigate =
       p-5
       "
     >
-
       <h1
         className="
         text-2xl
@@ -57,44 +59,83 @@ const navigate =
         "
       >
 
-        <Link
-          to="/dashboard"
-          className="flex items-center gap-3"
-        >
-          <FaChartBar />
-          Dashboard
-        </Link>
+        {/* ADMIN */}
 
-        <Link
-          to="/projects"
-          className="flex items-center gap-3"
-        >
-          <FaProjectDiagram />
-          Projects
-        </Link>
+        {user?.role ===
+          "admin" && (
+          <>
+            <Link
+              to="/dashboard"
+              className="
+              flex
+              items-center
+              gap-3
+              "
+            >
+              <FaChartBar />
+              Dashboard
+            </Link>
 
-        {/* <Link
-          to="/tasks"
-          className="flex items-center gap-3"
-        >
-          <FaTasks />
-          Tasks
-        </Link> */}
+            <Link
+              to="/projects"
+              className="
+              flex
+              items-center
+              gap-3
+              "
+            >
+              <FaProjectDiagram />
+              Projects
+            </Link>
+          </>
+        )}
+
+        {/* MEMBER */}
+
+        {user?.role ===
+          "member" && (
+          <>
+            <Link
+              to="/member-dashboard"
+              className="
+              flex
+              items-center
+              gap-3
+              "
+            >
+              <FaChartBar />
+              My Dashboard
+            </Link>
+
+            <Link
+              to="/projects"
+              className="
+              flex
+              items-center
+              gap-3
+              "
+            >
+              <FaProjectDiagram />
+              My Projects
+            </Link>
+          </>
+        )}
 
         <button
-  onClick={logoutHandler}
-  className="
-  mt-10
-  bg-red-600
-  py-2
-  rounded
-  "
->
-  Logout
-</button>
+          onClick={
+            logoutHandler
+          }
+          className="
+          mt-10
+          bg-red-600
+          py-2
+          rounded
+          "
+        >
+          Logout
+        </button>
 
       </nav>
-
     </div>
   );
 };

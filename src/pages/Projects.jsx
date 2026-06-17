@@ -2,7 +2,7 @@ import {
   useEffect,
   useState,
 } from "react";
-
+import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
 
 import ProjectCard
@@ -12,7 +12,7 @@ import CreateProjectModal
 from "../components/CreateProjectModal";
 
 const Projects = () => {
-
+const { user } = useAuth();
   const [
     projects,
     setProjects,
@@ -58,19 +58,21 @@ const Projects = () => {
           Projects
         </h1>
 
-        <button
-          onClick={() =>
-            setShowModal(true)
-          }
-          className="
-          bg-indigo-600
-          px-4
-          py-2
-          rounded
-          "
-        >
-          Create Project
-        </button>
+        {user?.role === "admin" && (
+  <button
+    onClick={() =>
+      setShowModal(true)
+    }
+    className="
+    bg-indigo-600
+    px-4
+    py-2
+    rounded
+    "
+  >
+    Create Project
+  </button>
+)}
 
       </div>
 
