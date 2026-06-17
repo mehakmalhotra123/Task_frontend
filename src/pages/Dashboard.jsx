@@ -21,7 +21,7 @@ const Dashboard = () => {
       try {
         const { data } =
           await API.get(
-            "/dashboard/stats"
+            "/dashboard"
           );
 
         setStats(data);
