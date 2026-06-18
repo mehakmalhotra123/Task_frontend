@@ -234,12 +234,12 @@ shadow-2xl
 
           <p>
             Email:
-            admin@teamflow.com
+            mehakmalhotra200479@gmail.com
           </p>
 
           <p>
             Password:
-            Admin@123
+           123456
           </p>
         </div>
 
@@ -262,12 +262,12 @@ shadow-2xl
 
           <p>
             Email:
-            member@teamflow.com
+            soonam@gmail.com
           </p>
 
           <p>
             Password:
-            Member@123
+           123456
           </p>
         </div>
 
