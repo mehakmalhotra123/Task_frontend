@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import API from "../api/axios";
-
+import { useAuth } from "../context/AuthContext";
 import AddMemberModal from "../components/MemberModal";
 import CreateTaskModal from "../components/CreateTaskModal";
 
 const ProjectDetails = () => {
+  const { user } = useAuth();
   const { id } = useParams();
 
   const [project, setProject] =
