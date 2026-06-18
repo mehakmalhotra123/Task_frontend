@@ -90,6 +90,15 @@ const ProjectDetails = () => {
   if (!project)
     return <h1>Loading...</h1>;
 
+  const isAdmin =
+  user?.role === "admin";
+
+const handleUnauthorized =
+  () => {
+    alert(
+      "Access Denied!\n\nOnly administrators can perform this action."
+    );
+  };
   return (
     <div>
 
@@ -126,7 +135,9 @@ const ProjectDetails = () => {
       >
         <button
           onClick={() =>
-            setShowMemberModal(true)
+           isAdmin
+      ? setShowMemberModal(true)
+      : handleUnauthorized()
           }
           className="
           bg-green-600
@@ -140,7 +151,9 @@ const ProjectDetails = () => {
 
         <button
           onClick={() =>
-            setShowTaskModal(true)
+             isAdmin
+      ? setShowTaskModal(true)
+      : handleUnauthorized()
           }
           className="
           bg-indigo-600
@@ -202,9 +215,9 @@ const ProjectDetails = () => {
 
               <button
                 onClick={() =>
-                  removeMember(
-                    member._id
-                  )
+                  isAdmin
+           ? removeMember( member._id)
+           : handleUnauthorized()
                 }
                 className="
                 text-red-500

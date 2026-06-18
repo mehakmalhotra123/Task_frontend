@@ -38,6 +38,16 @@ const { user } = useAuth();
     getProjects();
   }, []);
 
+  const isAdmin =
+  user?.role === "admin";
+
+const handleUnauthorized =
+  () => {
+    alert(
+      "Access Denied!\n\nOnly administrators can create projects."
+    );
+  };
+
   return (
     <div>
 
@@ -61,7 +71,9 @@ const { user } = useAuth();
         {user?.role === "admin" && (
   <button
     onClick={() =>
-      setShowModal(true)
+      isAdmin
+      ? setShowModal(true)
+      : handleUnauthorized()
     }
     className="
     bg-indigo-600
